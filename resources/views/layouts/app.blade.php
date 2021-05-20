@@ -62,6 +62,7 @@
                 margin-bottom: 30px;
             }
         </style>
+        <link rel="stylesheet" href="/css/app.css">
     </head>
     <body>
       @yield('main')
