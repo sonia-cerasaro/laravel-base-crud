@@ -13,5 +13,6 @@
   </div>
   @endforeach
 </main>
+<a href="{{route('comics.create')}}"> Ordina Comics</a>
 
 @endsection

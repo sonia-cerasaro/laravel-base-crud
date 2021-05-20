@@ -16,6 +16,6 @@ use App\Http\Controllers\ComicController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
 Route::resource('comics', 'ComicController');  //resource crea in automatico tutte le rotte che ci servono per usare un crud
