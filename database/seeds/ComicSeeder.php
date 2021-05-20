@@ -18,7 +18,7 @@ class ComicSeeder extends Seeder
         $comic = $comics[$i];
 
         $comic_obj = new Comic();
-        $comic_obj->title = intval($comic['title']);
+        $comic_obj->title = $comic['title'];
         $comic_obj->description = $comic['description'];
         $comic_obj->thumb = $comic['thumb'];
         $comic_obj->price = $comic['price'];
