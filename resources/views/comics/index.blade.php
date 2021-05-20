@@ -10,7 +10,6 @@
     <p>{{$comic->series}}</p>
   </div>
   @endforeach
-
 </main>
 
 @endsection
