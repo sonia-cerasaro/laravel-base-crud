@@ -61,9 +61,14 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function show(Comic $comic)
+    public function show($id)
     {
-      return view('comics.show', compact('comic'));
+      $comic = Comic::find($id);
+      if($comic){
+        $data = [ 'comic' => $comic ];
+        return view('comics.show', $data);
+      }
+      abort(404);
     }
 
     /**
@@ -72,9 +77,14 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comic $comic)
+    public function edit($id);
     {
-      return view('comics.edit', compact('comic'));
+      $comic = Comic::find($id);
+      if($comic){
+        $data = [ 'comic' => $comic ];
+        return view('comics.show', $data);
+      }
+      abort(404);
     }
 
     /**
@@ -84,11 +94,12 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comic $comic)
+    public function update(Request $request, $id)
     {
-      $comic = Comic::orderBy('id', 'desc')->first();
-
-      return redirect()->route('pastas.edit', compact('pasta'));
+      $data = $request->all();
+      $comic = Comic::find($id);
+      $comic->update($data);
+      return redirect()->route('comic.show', ['comic' => $comic->id]);
     }
 
     /**
@@ -97,8 +108,10 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comic $comic)
+    public function destroy($id)
     {
-        //
+      $comic = Comic::find($id);
+      $comic->delete();
+      return redirect()->route('comic.index');
     }
 }

@@ -2,13 +2,18 @@
 
 @section('main')
   <main>
-    <form class="" action="{{route('comics.store')}}" method="post">
-      <!-- @csrf
-      @method('POST') -->
-      <input type="text" name="series" value="" placeholder="title">
+    <form class="" action="{{route('comics.update', ['comic'=>$comic->id])}}" method="post">
+      @csrf
+      @method('PATCH')
+      <input type="text" name="series" value="{{$comic->series}}" placeholder="title">
       <input type="text" name="thumb" value="" placeholder="image">
       <input type="text" name="price" value="" placeholder="serie">
       <input type="submit" name="" value="send">
+    </form>
+    <form class="" action="{{route('comics.destroy', ['comic'=>$comic->id])}}" method="post">
+      @csrf
+      @method('DELETE')
+      <input type="send" name="" value="delete">
     </form>
   </main>
 @endsection
