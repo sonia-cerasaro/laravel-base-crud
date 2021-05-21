@@ -38,6 +38,21 @@ class ComicController extends Controller
     public function store(Request $request)
     {
       // dd($request);
+      $comic = $request->all();
+
+      $comic_obj = new Comic();
+      $comic_obj->title = $comic['title'];
+      $comic_obj->description = $comic['description'];
+      $comic_obj->thumb = $comic['thumb'];
+      $comic_obj->price = $comic['price'];
+      $comic_obj->series = $comic['series'];
+      $comic_obj->sale_date = $comic['sale_date'];
+      $comic_obj->type = $comic['type'];
+      $comic_obj->save();
+
+      $comic = Comic::orderBy('id', 'desc')->first();
+
+      return redirect()->route('pastas.show', compact('pasta'));  //le funzioni store e update non ti fornisce la vista ma una volta fatte le loro operazioni di aggiornametento ti riderazionano in un altra pagina.
     }
 
     /**
@@ -59,7 +74,7 @@ class ComicController extends Controller
      */
     public function edit(Comic $comic)
     {
-        //
+      return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -71,7 +86,9 @@ class ComicController extends Controller
      */
     public function update(Request $request, Comic $comic)
     {
-        //
+      $comic = Comic::orderBy('id', 'desc')->first();
+
+      return redirect()->route('pastas.edit', compact('pasta'));
     }
 
     /**
