@@ -11,6 +11,5 @@
       <input type="text" name="title" value="" placeholder="serie">
       <input type="submit" name="" value="send">
     </form>
-    
   </main>
 @endsection
