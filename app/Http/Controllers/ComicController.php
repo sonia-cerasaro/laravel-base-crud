@@ -41,18 +41,14 @@ class ComicController extends Controller
       $comic = $request->all();
 
       $comic_obj = new Comic();
-      $comic_obj->title = $comic['title'];
-      $comic_obj->description = $comic['description'];
       $comic_obj->thumb = $comic['thumb'];
       $comic_obj->price = $comic['price'];
       $comic_obj->series = $comic['series'];
-      $comic_obj->sale_date = $comic['sale_date'];
-      $comic_obj->type = $comic['type'];
-      $comic_obj->save();
+      $comic_obj->series = $comic['title'];
 
       $comic = Comic::orderBy('id', 'desc')->first();
 
-      return redirect()->route('pastas.show', compact('pasta'));  //le funzioni store e update non ti fornisce la vista ma una volta fatte le loro operazioni di aggiornametento ti riderazionano in un altra pagina.
+      return redirect()->route('comics.show', compact('comic'));  //le funzioni store e update non ti fornisce la vista ma una volta fatte le loro operazioni di aggiornametento ti riderazionano in un altra pagina.
     }
 
     /**
@@ -77,8 +73,7 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function edit($id);
-    {
+    public function edit($id) {
       $comic = Comic::find($id);
       if($comic){
         $data = [ 'comic' => $comic ];
