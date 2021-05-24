@@ -24,8 +24,8 @@
   </div>
   @endforeach
 </main>
-<!-- <a href="{{route('comics.create',)}}">
+<a href="{{route('comics.create',)}}">
   Create
-</a> -->
+</a>
 
 @endsection
