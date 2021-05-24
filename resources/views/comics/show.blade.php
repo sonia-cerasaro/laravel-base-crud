@@ -8,4 +8,10 @@
     <a href="{{route('comics.index')}}">Torna indietro</a>
     <a href="{{route('home')}}">Home</a>
 
+    <form class="" action="{{route('comics.destroy', ['comic'=>$comic->id])}}" method="post">
+      @csrf
+      @method('DELETE')
+      <input type="submit" value="delete">
+    </form>
+
 @endsection

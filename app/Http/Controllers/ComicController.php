@@ -14,7 +14,7 @@ class ComicController extends Controller
      */
     public function index()
     {
-      $comics = Comic::all();
+      $comics = Comic::all();                           //:: e' una funzione statica
 
       return view('comics.index', compact('comics'));
     }
@@ -38,13 +38,15 @@ class ComicController extends Controller
     public function store(Request $request)
     {
       // dd($request);
-      $comic = $request->all();
+      $data = $request->all();
 
       $comic_obj = new Comic();
       $comic_obj->thumb = $comic['thumb'];
       $comic_obj->price = $comic['price'];
       $comic_obj->series = $comic['series'];
-      $comic_obj->series = $comic['title'];
+      $comic_obj->description = $comic['description'];
+      $comic_obj->sale_date = $comic['sale_date'];
+      $comic_obj->type = $comic['type'];
 
       $comic = Comic::orderBy('id', 'desc')->first();
 
@@ -73,11 +75,13 @@ class ComicController extends Controller
      * @param  \App\Comic  $comic
      * @return \Illuminate\Http\Response
      */
-    public function edit($id) {
+    public function edit($id)
+    {
       $comic = Comic::find($id);
-      if($comic){
+      if($comic)
+      {
         $data = [ 'comic' => $comic ];
-        return view('comics.show', $data);
+        return view('comics.edit', $data);
       }
       abort(404);
     }

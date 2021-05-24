@@ -2,19 +2,18 @@
 
 @section('main')
   <main>
-    <form class="" action="{{route('comics.update', ['comic'=>$comic->id])}}" method="post">
+    <form class="" action="{{route('comics.store', ['comic'=>$comic->id])}}" method="post">
       @csrf
-      @method('PATCH')
-      <input type="text" name="series" value="{{$comic->series}}" placeholder="title">
-      <input type="text" name="thumb" value="" placeholder="image">
-      <input type="text" name="price" value="" placeholder="serie">
-      <input type="text" name="title" value="" placeholder="serie">
+      @method('GET')
+      <input type="text" name="series" value="{{$comic->series}}" placeholder="series">
+      <input type="text" name="thumb" value="{{$comic->thumb}}" placeholder="image">
+      <input type="number" name="price" value="{{$comic->price}}" placeholder="serie">
+      <input type="text" name="title" value="{{$comic->title}}" placeholder="title">
+      <textarea name="description" value="{{$comic->description}}" placeholder="description"></textarea>
+      <input type="date" name="sale_date" value="{{$comic->sale_date}}" placeholder="date">
+      <input type="text" name="type" value="{{$comic->type}}" placeholder="type">
       <input type="submit" name="" value="send">
-    </form>
-    <form class="" action="{{route('comics.destroy', ['comic'=>$comic->id])}}" method="post">
-      @csrf
-      @method('DELETE')
-      <input type="delete" name="delete" value="delete">
+      <a href="{{route('comics.edit', ['comic'=>$comic->id])}}"></a>
     </form>
   </main>
 @endsection
